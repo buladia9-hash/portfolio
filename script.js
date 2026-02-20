@@ -29,7 +29,7 @@ if (form) {
         try {
             await databases.createDocument(
                 '69984d14000bd907427e',
-                'contacts',
+                '69984c85002692f0b01b',
                 ID.unique(),
                 {
                     name: name,
