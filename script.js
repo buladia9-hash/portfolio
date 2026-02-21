@@ -13,44 +13,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-const form = document.querySelector('.contact-form');
-if (form) {
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const name = form.querySelector('input[type="text"]').value;
-        const email = form.querySelector('input[type="email"]').value;
-        const message = form.querySelector('textarea').value;
-        const submitBtn = form.querySelector('button');
-        
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        try {
-            await databases.createDocument(
-                '69984d14000bd907427e',
-                '69984c85002692f0b01b',
-                ID.unique(),
-                {
-                    name: name,
-                    email: email,
-                    message: message,
-                    timestamp: new Date().toISOString()
-                }
-            );
-            
-            alert('Thank you for your message! I will get back to you soon.');
-            form.reset();
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Sorry, there was an error sending your message. Please try again or email me directly.');
-        } finally {
-            submitBtn.textContent = 'Send Message';
-            submitBtn.disabled = false;
-        }
-    });
-}
-
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if (window.scrollY > 100) {
